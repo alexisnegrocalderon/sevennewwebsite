@@ -39,14 +39,12 @@ function SevenMark({ className }: { className?: string }) {
 export default function Hero() {
   return (
     <section className="relative h-screen w-full overflow-hidden bg-black">
-      {/* Video de fondo del cliente: reemplazar src por el metraje real cuando esté listo. */}
       <video
         className="absolute inset-0 h-full w-full object-cover grayscale"
         autoPlay
         loop
         muted
         playsInline
-        poster="/hero-poster.jpg"
         src="/videos/hero.mp4"
       />
       <div
