@@ -30,16 +30,19 @@ const fadeUp: Variants = {
   }),
 };
 
-function SevenMark({ className }: { className?: string }) {
+function SevenWordmark({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 256 256" className={className} fill="#ffffff">
-      <path
-        d="M 128 192 L 128 256 L 64.5 256 L 32 223 L 0 192 L 0 128 L 64 128 Z
-           M 256 192 L 256 256 L 192.5 256 L 160 223 L 128 192 L 128 128 L 192 128 Z
-           M 128 64 L 128 128 L 64.5 128 L 32 95 L 0 64 L 0 0 L 64 0 Z
-           M 256 64 L 256 128 L 192.5 128 L 160 95 L 128 64 L 128 0 L 192 0 Z"
-      />
-    </svg>
+    <div className={`flex flex-col items-center leading-none ${className}`}>
+      <span
+        className="text-[17px] font-black italic tracking-tighter text-white"
+        style={{ transform: "skewX(-8deg)" }}
+      >
+        SEVEN
+      </span>
+      <span className="mt-0.5 text-[6px] font-medium tracking-[0.4em] text-white">
+        FITNESS CLUB
+      </span>
+    </div>
   );
 }
 
@@ -64,8 +67,9 @@ export default function Hero() {
         alt=""
         className="absolute inset-0 h-full w-full object-cover grayscale"
       />
+      <div className="absolute inset-0 bg-black/45" aria-hidden />
       <div
-        className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/70"
+        className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/85"
         aria-hidden
       />
 
@@ -75,11 +79,8 @@ export default function Hero() {
         initial="hidden"
         animate="show"
       >
-        <div className="flex items-center gap-2 rounded-full bg-neutral-900/90 py-3 pl-4 pr-6 backdrop-blur">
-          <SevenMark className="h-5 w-5" />
-          <span className="text-sm font-normal tracking-tight text-white">
-            seven
-          </span>
+        <div className="flex items-center rounded-full bg-neutral-900/90 px-5 py-2.5 backdrop-blur">
+          <SevenWordmark />
         </div>
 
         <div className="hidden items-center gap-1 rounded-full bg-neutral-900/90 px-3 py-2 backdrop-blur md:flex">
