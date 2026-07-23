@@ -1,4 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import Loader from "./components/Loader";
 import Hero from "./components/Hero";
 import Clases from "./components/Clases";
 import Sedes from "./components/Sedes";
@@ -7,6 +9,8 @@ import Comunidad from "./components/Comunidad";
 import Footer from "./components/Footer";
 
 function App() {
+  const [showLoader, setShowLoader] = useState(true);
+
   useEffect(() => {
     if (!window.location.hash) return;
     const target = document.querySelector(window.location.hash);
@@ -15,6 +19,9 @@ function App() {
 
   return (
     <>
+      <AnimatePresence>
+        {showLoader && <Loader onComplete={() => setShowLoader(false)} />}
+      </AnimatePresence>
       <Hero />
       <Clases />
       <Sedes />
