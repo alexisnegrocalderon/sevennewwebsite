@@ -38,7 +38,7 @@ function SevenMark({ className }: { className?: string }) {
 
 export default function Hero() {
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-black">
+    <section id="top" className="relative h-screen w-full overflow-hidden bg-black">
       <video
         className="absolute inset-0 h-full w-full object-cover grayscale"
         autoPlay
@@ -53,7 +53,7 @@ export default function Hero() {
       />
 
       <motion.nav
-        className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between gap-4 px-6 pt-6 md:px-10"
+        className="fixed top-0 left-0 right-0 z-20 flex items-center justify-between gap-4 px-6 pt-6 md:px-10"
         variants={navReveal}
         initial="hidden"
         animate="show"

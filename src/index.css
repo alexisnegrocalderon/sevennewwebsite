@@ -6,6 +6,14 @@ body,
   height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
 body {
   margin: 0;
   font-family: "Readex Pro", system-ui, -apple-system, sans-serif;
@@ -18,4 +26,10 @@ body {
 .hero-title {
   letter-spacing: -0.04em;
   line-height: 0.95;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
