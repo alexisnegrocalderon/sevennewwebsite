@@ -1,4 +1,11 @@
-import { motion, type Variants } from "framer-motion";
+import { useRef } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+  type Variants,
+} from "framer-motion";
 
 const navReveal: Variants = {
   hidden: { opacity: 0, y: -16 },
@@ -37,17 +44,37 @@ function SevenMark({ className }: { className?: string }) {
 }
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], reduceMotion ? ["0%", "0%"] : ["0%", "28%"]);
+  const bgScale = useTransform(scrollYProgress, [0, 1], reduceMotion ? [1, 1] : [1, 1.18]);
+  const contentY = useTransform(scrollYProgress, [0, 1], reduceMotion ? [0, 0] : [0, -80]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+
   return (
-    <section id="top" className="relative h-screen w-full overflow-hidden bg-black">
-      <video
-        className="absolute inset-0 h-full w-full object-cover grayscale"
-        autoPlay
-        loop
-        muted
-        playsInline
-        poster="/images/hero-fallback.jpg"
-        src="/videos/hero.mp4"
-      />
+    <section
+      ref={sectionRef}
+      id="top"
+      className="relative h-screen w-full overflow-hidden bg-black"
+    >
+      <motion.div
+        className="absolute inset-0"
+        style={{ y: bgY, scale: bgScale }}
+      >
+        <video
+          className="absolute inset-0 h-full w-full object-cover grayscale"
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="/images/hero-fallback.jpg"
+          src="/videos/hero.mp4"
+        />
+      </motion.div>
       <div
         className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/70"
         aria-hidden
@@ -86,7 +113,10 @@ export default function Hero() {
         </a>
       </motion.nav>
 
-      <div className="relative h-full w-full">
+      <motion.div
+        className="relative h-full w-full"
+        style={{ y: contentY, opacity: contentOpacity }}
+      >
         <motion.h1
           className="hero-title absolute left-4 top-[18%] text-[14vw] font-medium text-white md:left-10 md:text-[13vw]"
           variants={wordReveal}
@@ -184,7 +214,7 @@ export default function Hero() {
             disciplinas disponibles
           </p>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }

@@ -1,4 +1,6 @@
+import { useRef } from "react";
 import { motion } from "framer-motion";
+import ParallaxGhost from "./ParallaxGhost";
 
 const profesionales = [
   { area: "Nutrición", detalle: "evaluación inicial gratis para socios · sesión de pago $33.990" },
@@ -9,9 +11,21 @@ const profesionales = [
 const alianzas = ["Red Bull", "Santiago Wanderers", "Pro Karting", "ProRiders Surf", "@gimnasioseven"];
 
 export default function Comunidad() {
+  const sectionRef = useRef<HTMLElement>(null);
+
   return (
-    <section id="comunidad" className="bg-white text-black">
-      <div className="grid gap-16 px-6 py-24 md:grid-cols-2 md:px-10 md:py-32">
+    <section
+      ref={sectionRef}
+      id="comunidad"
+      className="relative overflow-hidden bg-white text-black"
+    >
+      <ParallaxGhost
+        number="04"
+        target={sectionRef}
+        className="right-4 top-4 text-[22vw] text-black/[0.04] md:right-8 md:top-8 md:text-[16vw]"
+      />
+
+      <div className="relative grid gap-16 px-6 py-24 md:grid-cols-2 md:px-10 md:py-32">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}

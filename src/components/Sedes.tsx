@@ -1,4 +1,6 @@
+import { useRef } from "react";
 import { motion } from "framer-motion";
+import ParallaxGhost from "./ParallaxGhost";
 
 const regiones = [
   {
@@ -22,10 +24,22 @@ const regiones = [
 ];
 
 export default function Sedes() {
+  const sectionRef = useRef<HTMLElement>(null);
+
   return (
-    <section id="sedes" className="bg-white px-6 py-24 text-black md:px-10 md:py-32">
+    <section
+      ref={sectionRef}
+      id="sedes"
+      className="relative overflow-hidden bg-white px-6 py-24 text-black md:px-10 md:py-32"
+    >
+      <ParallaxGhost
+        number="02"
+        target={sectionRef}
+        className="right-4 top-4 text-[22vw] text-black/[0.04] md:right-8 md:top-8 md:text-[16vw]"
+      />
+
       <motion.div
-        className="mb-12 max-w-xl md:mb-16"
+        className="relative mb-12 max-w-xl md:mb-16"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.4 }}
@@ -43,7 +57,7 @@ export default function Sedes() {
         </p>
       </motion.div>
 
-      <div className="grid gap-12 md:grid-cols-2">
+      <div className="relative grid gap-12 md:grid-cols-2">
         {regiones.map((region, ri) => (
           <motion.div
             key={region.nombre}

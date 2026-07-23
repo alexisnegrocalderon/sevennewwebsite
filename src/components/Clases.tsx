@@ -1,4 +1,6 @@
+import { useRef } from "react";
 import { motion } from "framer-motion";
+import ParallaxGhost from "./ParallaxGhost";
 
 const disciplinas = [
   "Funcional",
@@ -12,10 +14,22 @@ const disciplinas = [
 ];
 
 export default function Clases() {
+  const sectionRef = useRef<HTMLElement>(null);
+
   return (
-    <section id="clases" className="bg-black px-6 py-24 text-white md:px-10 md:py-32">
+    <section
+      ref={sectionRef}
+      id="clases"
+      className="relative overflow-hidden bg-black px-6 py-24 text-white md:px-10 md:py-32"
+    >
+      <ParallaxGhost
+        number="01"
+        target={sectionRef}
+        className="right-4 top-4 text-[22vw] text-white/[0.04] md:right-8 md:top-8 md:text-[16vw]"
+      />
+
       <motion.div
-        className="mb-12 max-w-xl md:mb-16"
+        className="relative mb-12 max-w-xl md:mb-16"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.4 }}
@@ -33,7 +47,7 @@ export default function Clases() {
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-2 gap-px border border-white/15 bg-white/15 md:grid-cols-4">
+      <div className="relative grid grid-cols-2 gap-px border border-white/15 bg-white/15 md:grid-cols-4">
         {disciplinas.map((nombre, i) => (
           <motion.div
             key={nombre}
@@ -53,7 +67,7 @@ export default function Clases() {
         ))}
       </div>
 
-      <p className="mt-6 text-xs text-white/40">
+      <p className="relative mt-6 text-xs text-white/40">
         *horario de clases grupales sujeto a cambios y modificaciones
       </p>
     </section>
