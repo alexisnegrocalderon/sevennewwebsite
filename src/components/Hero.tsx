@@ -121,8 +121,8 @@ export default function Hero() {
           initial="hidden"
           animate="show"
         >
-          entrena siempre en el mejor ambiente, con clases grupales incluidas
-          y una comunidad que no se detiene
+          entrena siempre en el mejor ambiente, con clases grupales, asesoría
+          nutricional y una comunidad que no se detiene
         </motion.p>
 
         <motion.div
@@ -162,7 +162,7 @@ export default function Hero() {
             <span className="hidden h-px w-24 rotate-[-20deg] bg-white/40 md:block" />
           </div>
           <p className="mt-1 text-xs text-white/70 md:text-sm">
-            sedes activas
+            sedes en 2 regiones
           </p>
         </motion.div>
 
