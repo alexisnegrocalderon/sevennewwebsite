@@ -50,8 +50,6 @@ export default function Hero() {
     target: sectionRef,
     offset: ["start start", "end start"],
   });
-  const bgY = useTransform(scrollYProgress, [0, 1], reduceMotion ? ["0%", "0%"] : ["0%", "28%"]);
-  const bgScale = useTransform(scrollYProgress, [0, 1], reduceMotion ? [1, 1] : [1, 1.18]);
   const contentY = useTransform(scrollYProgress, [0, 1], reduceMotion ? [0, 0] : [0, -80]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
@@ -61,20 +59,11 @@ export default function Hero() {
       id="top"
       className="relative h-screen w-full overflow-hidden bg-black"
     >
-      <motion.div
-        className="absolute inset-0"
-        style={{ y: bgY, scale: bgScale }}
-      >
-        <video
-          className="absolute inset-0 h-full w-full object-cover grayscale"
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster="/images/hero-fallback.jpg"
-          src="/videos/hero.mp4"
-        />
-      </motion.div>
+      <img
+        src="/images/hero-fallback.jpg"
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover grayscale"
+      />
       <div
         className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/70"
         aria-hidden

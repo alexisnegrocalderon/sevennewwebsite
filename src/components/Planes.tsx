@@ -61,13 +61,17 @@ export default function Planes() {
         target={sectionRef}
         className="left-4 top-4 text-[22vw] text-white/[0.04] md:left-8 md:top-8 md:text-[16vw]"
       />
-      <div
-        className="pointer-events-none absolute -right-40 top-1/4 h-[32rem] w-[32rem] rounded-full bg-white/[0.06] blur-3xl"
+      <motion.div
+        className="pointer-events-none absolute -right-40 top-1/4 h-[32rem] w-[32rem] rounded-full bg-white/[0.07] blur-3xl"
         aria-hidden
+        animate={{ opacity: [0.5, 1, 0.5] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
-      <div
-        className="pointer-events-none absolute -left-32 bottom-0 h-[24rem] w-[24rem] rounded-full bg-white/[0.04] blur-3xl"
+      <motion.div
+        className="pointer-events-none absolute -left-32 bottom-0 h-[24rem] w-[24rem] rounded-full bg-white/[0.05] blur-3xl"
         aria-hidden
+        animate={{ opacity: [0.4, 0.9, 0.4] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
       />
 
       <motion.div
@@ -101,7 +105,7 @@ export default function Planes() {
               {active === i && (
                 <motion.span
                   layoutId="plan-tab-glass"
-                  className="absolute inset-0 rounded-full border border-white/25 bg-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.35)] backdrop-blur-xl"
+                  className="absolute inset-0 rounded-full border border-white/30 bg-white/10 shadow-[0_0_20px_rgba(255,255,255,0.25),0_4px_24px_rgba(0,0,0,0.35)] backdrop-blur-xl"
                   transition={{ type: "spring", stiffness: 350, damping: 30 }}
                 />
               )}
@@ -126,33 +130,49 @@ export default function Planes() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            className="grid gap-8 rounded-3xl border border-white/15 bg-white/[0.06] p-8 shadow-[0_8px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl md:grid-cols-[1fr_auto] md:items-center md:p-12"
           >
-            <div>
-              {plan.destacado && (
-                <span className="mb-3 inline-block rounded-full bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-black">
-                  más elegido
-                </span>
-              )}
-              <p className="font-mono text-6xl font-bold md:text-7xl">
-                {plan.precio}
-              </p>
-              <p className="mt-2 text-sm text-white/60">{plan.periodo}</p>
-              <ul className="mt-6 flex flex-col gap-2">
-                {plan.beneficios.map((b) => (
-                  <li key={b} className="relative pl-4 text-sm text-white/80">
-                    <span className="absolute left-0">—</span>
-                    {b}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <a
-              href="#comunidad"
-              className="block w-full rounded-full bg-white px-8 py-4 text-center text-sm font-bold uppercase tracking-wide text-black transition-colors hover:bg-neutral-200 md:w-auto"
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="relative grid gap-8 overflow-hidden rounded-3xl border border-white/15 bg-white/[0.04] p-8 shadow-[0_25px_70px_-20px_rgba(0,0,0,0.7)] backdrop-blur-2xl md:grid-cols-[1fr_auto] md:items-center md:p-12"
             >
-              elegir {plan.nombre.toLowerCase()}
-            </a>
+              <motion.span
+                aria-hidden
+                className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent"
+                animate={{ opacity: [0.3, 1, 0.3] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-x-8 -top-8 h-16 rounded-full bg-white/30 blur-2xl"
+              />
+
+              <div className="relative">
+                {plan.destacado && (
+                  <span className="mb-3 inline-block rounded-full bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-black">
+                    más elegido
+                  </span>
+                )}
+                <p className="font-mono text-6xl font-bold md:text-7xl">
+                  {plan.precio}
+                </p>
+                <p className="mt-2 text-sm text-white/60">{plan.periodo}</p>
+                <ul className="mt-6 flex flex-col gap-2">
+                  {plan.beneficios.map((b) => (
+                    <li key={b} className="relative pl-4 text-sm text-white/80">
+                      <span className="absolute left-0">—</span>
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <a
+                href="#comunidad"
+                className="relative block w-full rounded-full bg-white px-8 py-4 text-center text-sm font-bold uppercase tracking-wide text-black transition-colors hover:bg-neutral-200 md:w-auto"
+              >
+                elegir {plan.nombre.toLowerCase()}
+              </a>
+            </motion.div>
           </motion.div>
         </AnimatePresence>
       </div>
